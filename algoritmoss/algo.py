@@ -28,11 +28,16 @@ for x in algo:
 
 micamino = []
 
+a = 1
+b = 2
+print(f'inicio: {algo[a][b]}, izquierda: {algo[a][b-1]}, derecha: {algo[a][b+1]}, arriba: {algo[a-1][b]}, abajo: {algo[a+1][b]}')
+
+'''
 while True:
     for x in algo:
-        if isinstance(x,str):
-            print('string???')
-            continue
+        if isinstance(algo[a][b],str):
+            print(f'string: {algo[a][b]} en index: {a},{b}')
+            pass
         
         if isinstance(algo[a][b], int):
             if algo[a][b] >= 0:
@@ -40,10 +45,7 @@ while True:
             else:
                 precio -= (-algo[a][b])
 
-            print("index: ",a,b,"  cuesta: ",algo[a][b], " presio: ",precio)
             micamino.append(f'[{a},{b}]')
-            print("a: ",a)
-            print("b: ",b)
         
         if b == 12:
             b = 0
@@ -54,5 +56,5 @@ while True:
 
     if a == 13:
         break
-
+'''
 print("caminito: ", micamino)
