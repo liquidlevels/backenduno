@@ -14,6 +14,7 @@ algo = [[-3,-3,2,-3,3,-2,-2,1,2,0,2,0,1],
 
 #la utilizo para tener el valor y la posicion dividida en x & y
 def posicion_actual(vertical, horizontal):
+    #print(f'valor: {algo[vertical][horizontal]}, vertical: {vertical}, horizontal {horizontal}')
     return [algo[vertical][horizontal], vertical, horizontal]
 
 def mas_barato(posiciones_validas):
@@ -28,60 +29,33 @@ caminos = []
 def caminos_viables(vertical, horizontal):
     #izquierda
     if posicion_actual(vertical, horizontal - 1)[2] < 0:
+        print('mevalevergacompa')
         pass
     else:
         caminos.append([algo[vertical][horizontal - 1], vertical, horizontal - 1])
     #derecha
     if posicion_actual(vertical, horizontal + 1)[2] > 12:
+        print('mevalevergacompa')
         pass
     else:
         caminos.append([algo[vertical][horizontal], vertical, horizontal + 1])
     #arriba
     if posicion_actual(vertical - 1, horizontal)[1] < 0:
+        print('mevalevergacompa')
         pass
     else:
         caminos.append([algo[vertical - 1][horizontal], vertical - 1, horizontal])
     #abajo
     if posicion_actual(vertical + 1, horizontal)[1] > 12:
+        print('mevalevergacompa')
         pass
     else:
         caminos.append([algo[vertical + 1][horizontal], vertical + 1, horizontal])
 
     return caminos
 
-#pruebas
-print(f'caminos: {caminos_viables(0,0)}')
-posi = posicion_actual(0,0)
-print(posi[0])
-print(posicion_actual(0,0)[0])
-a = 1
-b = 2
-print(f'inicio: {algo[a][b]}, izquierda: {algo[a][b-1]}, derecha: {algo[a][b+1]}, arriba: {algo[a-1][b]}, abajo: {algo[a+1][b]}')
-'''
-micamino = []
-a = 0
-b = 0
-precio = 0
-while True:
-    for x in algo:
-        if isinstance(algo[a][b],str):
-            print(f'string: {posicion_actual(a,b)} en index: {a},{b}')
-            pass
-        
-        if isinstance(algo[a][b], int):
-            if algo[a][b] >= 0:
-                precio += algo[a][b]
-            else:
-                precio -= (-algo[a][b])
+def prueba():
+    print(f'don baraton: {mas_barato(caminos_viables(2,1))}')
+    print(caminos_viables(2,1))
 
-        if b == 12:
-            b = 0
-            a+=1
-            continue
-        
-        b+=1
-
-    if a == 13:
-        break
-print("caminito: ", micamino)
-'''
+prueba()
