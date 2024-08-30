@@ -26,41 +26,33 @@ camino(algo[1][2],algo[11][6])
 for x in algo:
     print(x)
 
-c = 0
-d = 0
+micamino = []
 
-'''
-for x in algo:
-    print('estas en x numero: ', c)
-    c+=1
-    for y in algo:
-        print('estas en y numero: ', d)
-        d+=1
-        if b > 12:
-            break
-        else:
-            print('index: ',a,b)
+while True:
+    for x in algo:
+        if isinstance(x,str):
+            print('string???')
+            continue
+        
+        if isinstance(algo[a][b], int):
             if algo[a][b] >= 0:
                 precio += algo[a][b]
-            if algo[a][b] < 0:
+            else:
                 precio -= (-algo[a][b])
-            print('presio: ',precio)
-            print(algo[a][b])
-            if b == 12:
-                a+=1
-            b+=1
-'''
 
-for x in algo:
-    print('index: ',a,b)
-    if algo[a][b] >= 0:
-        precio += algo[a][b]
-    if algo[a][b] < 0:
-        precio -= (-algo[a][b])
-    print('presio: ',precio)
-    print(algo[a][b])
-    if b == 12:
-        a+=1
-    b+=1
+            print("index: ",a,b,"  cuesta: ",algo[a][b], " presio: ",precio)
+            micamino.append(f'[{a},{b}]')
+            print("a: ",a)
+            print("b: ",b)
+        
+        if b == 12:
+            b = 0
+            a+=1
+            continue
+        
+        b+=1
 
+    if a == 13:
+        break
 
+print("caminito: ", micamino)
