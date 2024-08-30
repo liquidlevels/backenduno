@@ -51,4 +51,16 @@ for x in algo:
             b+=1
 '''
 
+for x in algo:
+    print('index: ',a,b)
+    if algo[a][b] >= 0:
+        precio += algo[a][b]
+    if algo[a][b] < 0:
+        precio -= (-algo[a][b])
+    print('presio: ',precio)
+    print(algo[a][b])
+    if b == 12:
+        a+=1
+    b+=1
+
 
