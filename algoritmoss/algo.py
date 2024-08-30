@@ -12,31 +12,10 @@ algo = [[-3,-3,2,-3,3,-2,-2,1,2,0,2,0,1],
         [-1,0,1,2,1,0,'F',0,-3,3,3,-2,-1],
         [1 ,-3,1,0,1,2,3,1,-2,3,3,0,3]]
 
-
+#la utilizo para tener el valor y la posicion dividida en x & y
 def posicion_actual(vertical, horizontal):
-    #quiero saber si puedo ir a otro lugar
-    return algo[vertical][horizontal]
+    return [algo[vertical][horizontal], vertical, horizontal]
 
-#la utilizo para identificar si el axis vertical es valido
-def vertical_valida(vertical):
-    return False if vertical < 0 or vertical > 12 else True
-
-#utilizo para saber si el axis horizontal es valido
-def horizontal_valida(horizontal):
-    return False if horizontal < 0 or horizontal > 12 else True
-
-#una vez tengo los axis validos, es hora de tomar su valor y ponerlo en una lista
-posiciones_validas = []
-def posicion_valida(vertical, horizontal):
-    if vertical_valida(vertical) == True and horizontal_valida(horizontal) == True:
-        posiciones_validas.append(algo[vertical][horizontal])
-    else:
-        print('vertical inaccesible')
-
-    return posiciones_validas
-
-#una vez tengo las posiciones validas dentro de una lista, utilizo este metodo
-#para reducirla al valor mas peque;o
 def mas_barato(posiciones_validas):
     for x in range(len(posiciones_validas) -1):
         mayor = max(posiciones_validas)
@@ -44,14 +23,41 @@ def mas_barato(posiciones_validas):
 
     return posiciones_validas[0]
 
-for x in algo:
-    print(x)
-'''
+#me da los posibles caminos que puedo tomar basado en el "safe area" 0-12 en xy
+caminos = []
+def caminos_viables(vertical, horizontal):
+    #izquierda
+    if posicion_actual(vertical, horizontal - 1)[2] < 0:
+        pass
+    else:
+        caminos.append([algo[vertical][horizontal - 1], vertical, horizontal - 1])
+    #derecha
+    if posicion_actual(vertical, horizontal + 1)[2] > 12:
+        pass
+    else:
+        caminos.append([algo[vertical][horizontal], vertical, horizontal + 1])
+    #arriba
+    if posicion_actual(vertical - 1, horizontal)[1] < 0:
+        pass
+    else:
+        caminos.append([algo[vertical - 1][horizontal], vertical - 1, horizontal])
+    #abajo
+    if posicion_actual(vertical + 1, horizontal)[1] > 12:
+        pass
+    else:
+        caminos.append([algo[vertical + 1][horizontal], vertical + 1, horizontal])
+
+    return caminos
+
+#pruebas
+print(f'caminos: {caminos_viables(0,0)}')
+posi = posicion_actual(0,0)
+print(posi[0])
+print(posicion_actual(0,0)[0])
 a = 1
 b = 2
-print(f'inicio: {posicion_actual(a,b)}, izquierda: {algo[a][b-1]}, derecha: {algo[a][b+1]}, arriba: {algo[a-1][b]}, abajo: {algo[a+1][b]}')
+print(f'inicio: {algo[a][b]}, izquierda: {algo[a][b-1]}, derecha: {algo[a][b+1]}, arriba: {algo[a-1][b]}, abajo: {algo[a+1][b]}')
 '''
-
 micamino = []
 a = 0
 b = 0
@@ -78,3 +84,4 @@ while True:
     if a == 13:
         break
 print("caminito: ", micamino)
+'''
