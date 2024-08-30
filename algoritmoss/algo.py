@@ -29,34 +29,34 @@ def mas_barato(posicionesValidas):
 caminos = []
 def caminos_viables(vertical, horizontal):
     #izquierda
-    if posicion_actual(vertical, horizontal - 1)[2] < 0:
-        pass
-    else:
+    if horizontal - 1 >= 0:
         caminos.append([algo[vertical][horizontal - 1], vertical, horizontal - 1])
     #derecha
-    if posicion_actual(vertical, horizontal + 1)[2] > 12:
-        pass
-    else:
-        caminos.append([algo[vertical][horizontal], vertical, horizontal + 1])
+    if horizontal + 1 <= 12:
+        caminos.append([algo[vertical][horizontal + 1], vertical, horizontal + 1])
     #arriba
-    if posicion_actual(vertical - 1, horizontal)[1] < 0:
-        pass
-    else:
+    if vertical - 1 >= 0:
         caminos.append([algo[vertical - 1][horizontal], vertical - 1, horizontal])
     #abajo
-    if posicion_actual(vertical + 1, horizontal)[1] > 12:
-        pass
-    else:
+    if vertical + 1 <= 12:
         caminos.append([algo[vertical + 1][horizontal], vertical + 1, horizontal])
 
     return caminos
 
 def prueba():
-    baraton = mas_barato(caminos_viables(2,1))
-    print(f'el mas barato: {baraton}')
-    newVertical = baraton[1]
-    newHorizontal = baraton[2]
+    vertical = 12
+    horizontal = 12
+    #print(algo[vertical][horizontal])
+    #print(algo[12][12])
+    caminoBarato = mas_barato(caminos_viables(vertical,horizontal))
+    print(f'el mas barato: {caminoBarato}')
+    newVertical = caminoBarato[1]
+    newHorizontal = caminoBarato[2]
     print(newVertical)
     print(newHorizontal)
+
+    #for i in range(len(algo)):
+    #    for j in range(len(algo[0])):
+    #        element = algo[i][j]
 
 prueba()
