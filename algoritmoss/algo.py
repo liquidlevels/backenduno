@@ -17,12 +17,12 @@ matrizVertical = 12
 matrizHorizontal = 12
 #almacena arrays (1-4) con la informacion de los posibles caminos [valor, vertical, horizontal]
 caminos = []
-
+camino_baraton = []
 def camino_mas_barato(posicionesValidas, posicionFinal):
     print(f'posiciones validas: {posicionesValidas}')
     for posicion in posicionesValidas:
         if isinstance(posicion[0], str):
-            if posicion[0] == algo[posicionFinal[0]][posicionFinal[1]]:
+            if posicion[0] == posicionFinal:
                 print(f'llegamos al final {posicion[0]} = {posicionFinal}')
                 return posicion
             else:
@@ -32,8 +32,10 @@ def camino_mas_barato(posicionesValidas, posicionFinal):
     for x in range(len(posicionesValidas) -1):
         mayor = max(posicionesValidas)
         posicionesValidas.remove(mayor)
-
-    return posicionesValidas[0]
+    
+    camino_baraton = posicionesValidas[0]
+    posicionesValidas.clear()
+    return camino_baraton
 
 #me da los posibles caminos que puedo tomar basado en el "safe area" 0-12 en xy
 def posibles_rutas(vertical, horizontal):
@@ -41,13 +43,13 @@ def posibles_rutas(vertical, horizontal):
     if horizontal - 1 >= 0:
         caminos.append([algo[vertical][horizontal - 1], vertical, horizontal - 1])
     #derecha
-    if horizontal + 1 <= 12:
+    if horizontal + 1 <= matrizHorizontal:
         caminos.append([algo[vertical][horizontal + 1], vertical, horizontal + 1])
     #arriba
     if vertical - 1 >= 0:
         caminos.append([algo[vertical - 1][horizontal], vertical - 1, horizontal])
     #abajo
-    if vertical + 1 <= 12:
+    if vertical + 1 <= matrizVertical:
         caminos.append([algo[vertical + 1][horizontal], vertical + 1, horizontal])
     print(f'posibles rutas: {caminos}')
     return caminos
