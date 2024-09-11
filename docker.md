@@ -51,6 +51,48 @@ mkdir py
 cd py/
 ```
 
+## Configuracion de nginx
+
+primero verificamos que este corriendo nginx buscando:
+```
+http://localhost:80
+```
+en nuestro navegador
+
+una vez verificado, editamos el index.html dentro de:
+```
+/usr/share/nginx/html/index.html
+```
+
+tenemos que editar la configuracion de nginx:
+```
+/etc/nginx/nginx.conf
+```
+agregamos la seccion para redirigir el trafico hacia el puerto 5000
+```
+server {
+    listen       80;
+    server_name 127.0.0.1;
+
+      location /page {
+    	proxy_pass http://127.0.0.1:5000;
+      }
+      location /test {
+      	proxy_pass http://172.17.0.2:5000;
+      }
+      location / {
+      	root /usr/share/nginx/html;
+	index index.html;
+      }
+    }
+```
+
+por ultimo, para que no haya problemas con la configuracion, vamos a:
+```
+/conf.d/
+rm default.conf
+```
+
 ## Configuracion de flask
 
 ### virtual environment
@@ -77,9 +119,9 @@ siguiendo los pasos de la pagina oficial de flask
 from flask import Flask
 app = Flask(__name__)
 
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
+@app.route('/page')
+def page():
+    return "<p>estas en /page</p>"
 ```
 
 - creamos una variable de entorno con **export**
