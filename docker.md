@@ -35,22 +35,6 @@ instalamos algun editor de texto, en mi caso **vim**:
 ```
 apt install vim
 ```
-creamos un usuario
-```
-adduser [user]
-```
-una vez creado el usuario, navegamos a la carpeta del usuario
-> **Nota:** se cambia la palabra **user** por el nombre de tu usuario
-```
-cd /home/user/
-```
-
-una vez dentro de la carpeta del usuario, crea una carpeta para trabajar con python
-```
-mkdir py
-cd py/
-```
-
 ## Configuracion de nginx
 
 verifica que nginx este funcionando poniendo el siguiente url en el navegador
@@ -88,7 +72,7 @@ server {
 
 para que no haya problemas con la configuracion, borra **default.conf**:
 ```
-/conf.d/
+etc/nginx/conf.d/
 rm default.conf
 ```
 
