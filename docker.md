@@ -2,12 +2,12 @@
 
 ## Docker
 
-comando para crear un contenedor de nginx con la ultima version, name se cambia por el nombre que le pondras a tu contenedor
+creamos un contenedor de nginx con la ultima version, **name** se cambia por el nombre que le pondras a tu contenedor
 ```
 sudo docker run --name name -d -p 80:80 nginx:latest
 ```
 
-con este comando puedes verificar que tu contenedor esta corriendo
+con este comando puedes verificar que tu contenedor esta corriendo:
 ```
 sudo docker ps
 ```
@@ -20,18 +20,18 @@ sudo docker exec -it name /bin/bash
 
 ## Configuracion inicial
 
-dentro de la instancia de bash ponemos el siguiente comando
+dentro de la instancia de bash actualizamos los repositorios con:
 ```
 apt update
 ```
 
-ahora instalamos los paquetes dev y venv de python3 en su version 11
+ahora se instala los paquetes **dev** y **venv** de **python3** en su version **11**
 ```
 apt install python3.11-dev
 apt install python3.11-venv
 ```
 
-ahora instalamos vim o algun editor de texto
+instalamos algun editor de texto, en mi caso **vim**:
 ```
 apt install vim
 ```
@@ -40,7 +40,7 @@ creamos un usuario
 adduser [user]
 ```
 una vez creado el usuario, navegamos a la carpeta del usuario
-> **Nota:** se cambia la palabra user por el nombre de tu usuario
+> **Nota:** se cambia la palabra **user** por el nombre de tu usuario
 ```
 cd /home/user/
 ```
@@ -53,22 +53,21 @@ cd py/
 
 ## Configuracion de nginx
 
-primero verificamos que este corriendo nginx buscando:
+verificamos que nginx este funcionando poniendo el siguiente url en el navegador
 ```
 http://localhost:80
 ```
-en nuestro navegador
 
 una vez verificado, editamos el index.html dentro de:
 ```
 /usr/share/nginx/html/index.html
 ```
 
-tenemos que editar la configuracion de nginx:
+edite la configuracion de nginx:
 ```
 /etc/nginx/nginx.conf
 ```
-agregamos la seccion para redirigir el trafico hacia el puerto 5000
+agrega la seccion para escuchar el puerto **80** redirigir el trafico hacia el puerto **5000** y como host, tenemos **127.0.0.1** o **localhost**
 ```
 server {
     listen       80;
@@ -87,17 +86,48 @@ server {
     }
 ```
 
-por ultimo, para que no haya problemas con la configuracion, vamos a:
+para que no haya problemas con la configuracion, borra **default.conf**:
 ```
 /conf.d/
 rm default.conf
+```
+
+salimos del contenedor utilizando **exit**:
+```
+root@41372ba75f40:/# exit
+```
+
+ahora reinicia el contenedor
+```
+docker restart [name o id]
+```
+
+instancia un bash dentro del contenedor:
+```
+sudo docker exec -it name /bin/bash
+```
+
+creamos un usuario
+```
+adduser [user]
+```
+una vez creado el usuario, navegamos a la carpeta del usuario
+> **Nota:** se cambia la palabra **user** por el nombre de tu usuario
+```
+cd /home/user/
+```
+
+una vez dentro de la carpeta del usuario, creamos una carpeta para trabajar con python
+```
+mkdir py
+cd py/
 ```
 
 ## Configuracion de flask
 
 ### virtual environment
 
-creamos nuestro virtual environment para despues activarlo
+dentro de */home/user/py* creamos nuestro virtual environment para despues activarlo
 ```
 python3 -m venv venv
 source venv/bin/activate
@@ -129,4 +159,9 @@ def page():
 ```
 export FLASK_APP=hello
 flask run --host=0.0.0.0
+```
+
+ahora verificamos en el navegador que el reverse proxy funciona:
+```
+http://127.0.0.1:80/page
 ```
