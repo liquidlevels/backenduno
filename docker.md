@@ -45,7 +45,7 @@ una vez creado el usuario, navegamos a la carpeta del usuario
 cd /home/user/
 ```
 
-una vez dentro de la carpeta del usuario, creamos una carpeta para trabajar con python
+una vez dentro de la carpeta del usuario, crea una carpeta para trabajar con python
 ```
 mkdir py
 cd py/
@@ -53,21 +53,21 @@ cd py/
 
 ## Configuracion de nginx
 
-verificamos que nginx este funcionando poniendo el siguiente url en el navegador
+verifica que nginx este funcionando poniendo el siguiente url en el navegador
 ```
 http://localhost:80
 ```
 
-una vez verificado, editamos el index.html dentro de:
+edite el *index.html* dentro de:
 ```
-/usr/share/nginx/html/index.html
+/usr/share/nginx/html/
 ```
 
-edite la configuracion de nginx:
+edite la configuracion de nginx *nginx.conf* dentro de:
 ```
-/etc/nginx/nginx.conf
+/etc/nginx/
 ```
-agrega la seccion para escuchar el puerto **80** redirigir el trafico hacia el puerto **5000** y como host, tenemos **127.0.0.1** o **localhost**
+agrega la seccion dentro de la seccion *http{}* para escuchar el puerto **80** redirigir el trafico hacia el puerto **5000** y como host, tenemos **127.0.0.1** o **localhost**
 ```
 server {
     listen       80;
