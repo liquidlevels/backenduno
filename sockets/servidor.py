@@ -2,6 +2,8 @@ import socket
 import threading
 import sys
 import pickle
+import os
+import shutil
 
 class Servidor():
     def __init__(self, host="localhost", port=7000):
@@ -56,9 +58,42 @@ class Servidor():
                 for c in self.clientes:
                     try:
                         data = c.recv(1024)
-                            self.msg_to_all(data,c)
+                        if data:
+                            message = pickle.loads(data)
+                            if message.startswith("ls"):
+                                self.lsToClient(c)
+                            elif message.startswith("get"):
+                                self.getFileToClient(message, c)
+                            else:
+                                self.msg_to_all(data,c)
                     except:
                         pass
+    
+    def lsToClient(self, client):
+        path = "/home/liquid/workspace/backenduno/sockets/files"
+        list_dir = os.listdir(path)
+        response = "dir: " + ",".join(list_dir)
+        try:
+            client.send(pickle.dumps(response))
+        except:
+            print("no se pudo krnalgas")
+
+    def getFileToClient(self, message, client):
+        file = message.split()
+        current_directory = os.getcwd()
+        new_directory_path = os.path.join(current_directory, 'Downloads')
+
+        if not os.path.exists(new_directory_path):
+            os.mkdir(new_directory_path)
+        
+        path = "/home/liquid/workspace/backenduno/sockets/files/" + file[1]
+        pa_donde_lo_llevamos = os.path.join(new_directory_path, os.path.basename(path))
+        
+        try:
+            shutil.copy(path, pa_donde_lo_llevamos)
+            client.send(pickle.dumps("jalo, ve a: "+new_directory_path))
+        except:
+            client.send(pickle.dumps("no se pudo obtener el archivo"))
 
 server = Servidor()
 server()
