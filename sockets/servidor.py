@@ -86,7 +86,7 @@ class Servidor():
         if not os.path.exists(new_directory_path):
             os.mkdir(new_directory_path)
         
-        path = "/home/liquid/workspace/backenduno/sockets/files/" + file[1]
+        path = os.path.join(current_directory,'files', file[1])
         pa_donde_lo_llevamos = os.path.join(new_directory_path, os.path.basename(path))
         
         try:
