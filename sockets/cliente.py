@@ -21,7 +21,7 @@ class Cliente():
     def msg_recv(self):
         while True:
             try:
-                data = self.sock.recv(1028)
+                data = self.sock.recv(1024)
                 if data:
                     data = pickle.loads(data)
                     print(data)

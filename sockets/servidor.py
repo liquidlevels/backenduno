@@ -70,7 +70,8 @@ class Servidor():
                         pass
     
     def lsToClient(self, client):
-        path = "/home/liquid/workspace/backenduno/sockets/files"
+        path = os.path.join(os.getcwd(), 'files')
+        #path = "/home/liquid/workspace/backenduno/sockets/files"
         list_dir = os.listdir(path)
         response = "dir: " + ",".join(list_dir)
         try:
