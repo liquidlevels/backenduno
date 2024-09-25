@@ -3,6 +3,7 @@
 ## Docker
 
 creamos un contenedor de nginx con la ultima version, **name** se cambia por el nombre que le pondras a tu contenedor
+> **Para pendejos con MacOS** omitir *sudo*
 ```
 sudo docker run --name name -d -p 80:80 nginx:latest
 ```
