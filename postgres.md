@@ -23,6 +23,7 @@ https://scryfall.com/docs/api/bulk-data
 ```
 
 descarga lo siguiente
+
 ![File](/images/file.png)
 
 informacion en la que se basa para crear la tabla dentro de la base de datos
