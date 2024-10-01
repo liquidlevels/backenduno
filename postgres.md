@@ -142,6 +142,6 @@ print("Data inserted successfully into PostgreSQL table.")
 
 en la instancia de postgres que iniciamos en *Configuracion de postgres*:
 ```
-SELECT * from files
+SELECT * from files;
 ```
 
