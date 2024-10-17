@@ -1,4 +1,0 @@
-sudo nmap localhost 
-sudo nmap -Pn localhost
-
--p 3306:3306 el primero es el que se abre en tu maquina, el segundo el que abre docker
