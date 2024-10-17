@@ -18,9 +18,7 @@ docker run -d \
 # Importacion de datos
 
 ve al sitio
-```
-https://scryfall.com/docs/api/bulk-data
-```
+[bulk data](https://scryfall.com/docs/api/bulk-data)
 
 descarga lo siguiente
 

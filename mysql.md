@@ -13,9 +13,7 @@ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -p 3306:3306 my
 # Importacion de datos
 
 ve al sitio
-```
-https://scryfall.com/docs/api/bulk-data
-```
+[bulk data](https://scryfall.com/docs/api/bulk-data)
 
 descarga lo siguiente
 
