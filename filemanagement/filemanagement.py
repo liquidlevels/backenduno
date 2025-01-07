@@ -1,5 +1,4 @@
 import os
-from io import BytesIO
 from flask import Flask, flash, request, redirect, url_for, send_from_directory, send_file
 from werkzeug.utils import secure_filename
 
